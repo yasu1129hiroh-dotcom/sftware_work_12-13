@@ -7,11 +7,11 @@
 
 int main(void) {
     FILE *fp;
-    struct calendar a;
+    struct calendar cal;
     struct schedule sch[999];
 
     int weekcount;
-    int x;
+    int menu;
     int count = 0;
     int schcount = 0;
 
@@ -26,35 +26,35 @@ int main(void) {
     printf("このプログラムはある月の予定表を作ります。\n");
 
     printf("年を入力：");
-    scanf("%d", &a.year);
+    scanf("%d", &cal.year);
 
     while (1) {
         printf("月を入力(1-12)：");
-        scanf("%d", &a.month);
+        scanf("%d", &cal.month);
 
-        if (a.month >= 1 && a.month <= 12)
+        if (cal.month >= 1 && cal.month <= 12)
             break;
 
         printf("間違った値です。入力し直してください。\n");
     }
 
-    a.lastday = getLastDay(a.year, a.month);
-    weekcount = dayOfWeek(a);
+    cal.lastday = getLastDay(cal.year, cal.month);
+    weekcount = dayOfWeek(cal);
 
     printf("終了:0, 単発予定を入力する:1, 毎週予定を入力する:2...");
-    scanf("%d", &x);
+    scanf("%d", &menu);
 
-    while (x != 0 && count < 999) {
-        if(x == 1){
+    while (menu != 0 && count < 999) {
+        if(menu == 1){
             put_schedule(&sch[count]);
             count += 1;
         }
-        else if(x == 2){
-            put_weekly_schedule(sch, &count, a);
+        else if(menu == 2){
+            put_weekly_schedule(sch, &count, cal);
         }
 
         printf("終了:0, 単発予定を入力する:1, 毎週予定を入力する:2...");
-        scanf("%d", &x);
+        scanf("%d", &menu);
 
     }
 
@@ -81,15 +81,15 @@ int main(void) {
     }
 
     //予定表の出力
-
+    
     fp = fopen("calendar.txt", "w");
     if (fp == NULL) {
         printf("ファイルを開けませんでした\n");
         return 1;
     }
 
-    printf("%d年 %d月 の予定表\n", a.year, a.month);
-    fprintf(fp, "%d年 %d月 の予定表\n", a.year, a.month);
+    printf("%d年 %d月 の予定表\n", cal.year, cal.month);
+    fprintf(fp, "%d年 %d月 の予定表\n", cal.year, cal.month);
 
     for (int i = 1; i <= a.lastday; i++) {
         int printed = 0;
