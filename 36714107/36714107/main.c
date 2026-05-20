@@ -80,7 +80,7 @@ int main(void) {
         }
     }
 
-    //予定表を出力する
+    //予定表の出力
 
     fp = fopen("calendar.txt", "w");
     if (fp == NULL) {
