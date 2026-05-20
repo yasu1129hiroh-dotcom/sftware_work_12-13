@@ -8,7 +8,7 @@
 int main(void) {
     FILE *fp;
     struct calendar a;
-    struct schedule sch[100];
+    struct schedule sch[999];
 
     int weekcount;
     int x;
@@ -19,7 +19,7 @@ int main(void) {
 
     //初期化
 
-    for (int i = 0; i < 100; i++) {
+    for (int i = 0; i < 999; i++) {
         sch[i].day = 32;
     }
 
@@ -44,7 +44,7 @@ int main(void) {
     printf("終了:0, 単発予定を入力する:1, 毎週予定を入力する:2...");
     scanf("%d", &x);
 
-    while (x != 0 && count < 100) {
+    while (x != 0 && count < 999) {
         if(x == 1){
             put_schedule(&sch[count]);
             count += 1;
