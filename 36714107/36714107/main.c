@@ -3,7 +3,7 @@
 #include "task12-1.h"
 
 
-//メイン
+//メイン部分の実装
 
 int main(void) {
     FILE *fp;
@@ -17,7 +17,7 @@ int main(void) {
 
     char *weekname[] = {"日", "月", "火", "水", "木", "金", "土"};
 
-    //初期化
+    //カレンダーの初期化
 
     for (int i = 0; i < 999; i++) {
         sch[i].day = 32;
@@ -58,7 +58,7 @@ int main(void) {
 
     }
 
-    //ソート
+    //入力された予定をソートする
 
     for (int i = 0; i < count - 1; i++) {
         for (int j = 0; j < count - i - 1; j++) {
@@ -79,6 +79,8 @@ int main(void) {
             }
         }
     }
+
+    //予定表を出力する
 
     fp = fopen("calendar.txt", "w");
     if (fp == NULL) {
